@@ -2,8 +2,6 @@ const express = require ('express');
 const path = require('path');
 const app = express();
 const fs = require('fs');
-
-
 class Contenedor{
      constructor(location){
          this.location=location;
@@ -31,6 +29,16 @@ class Contenedor{
           }
           return idAsigned;
      }
+     async getAll(){
+          let toReturn;
+          await fs.promises.readFile(`${this.location}`,"utf8")
+          .then (res=> {
+              toReturn=res;
+          })
+          .catch (error => console.log (error))
+          .finally(()=> console.log ('all ok'));
+          return toReturn;
+      }
      async randomProduct(){
           let toReturn
           function getRandomArbitrary(min, max) {
@@ -39,19 +47,16 @@ class Contenedor{
           await fs.promises.readFile(`${this.location}`,"utf8")
                .then ( res => {
                     let productos=JSON.parse(res)
-                    console.log (JSON.parse(res).length) // 8
-                    // .length porque el max está excluido
                     let unProducto= productos[getRandomArbitrary(0,productos.length)];
-                    console.log ('unProducto tipo: '+typeof(unProducto)) //tipo: objeto
-                    console.log (unProducto);
-                    toReturn=JSON.stringify(unProducto); //string
-                    console.log ('toReturn tipo: '+typeof(toReturn)) //tipo: string
                     toReturn=JSON.stringify(unProducto);
-                    console.log(toReturn); // {"title":"beldent fruta","price":60,"thumbnail":"www.placedog.net/200/200","id":4}
+                    toReturn=JSON.stringify(unProducto);
                })
                .catch(err => {
                     console.log ('           ups...             ')
                     console.log ('mY ErRoR: '+err)
+               })
+               .finally(()=>{
+                    console.log ('all Ok');
                })
           return toReturn;
      }
@@ -62,13 +67,14 @@ const oneContainer= new Contenedor(user_path_file)
 
 //############################ EXPRESS ROUTE ##################################
 // app.get((ruta),(callback))
-app.get("/productos",(req,res)=>{
-     res.send('Estás en productos');
+app.get("/productos", async(req,res)=>{
+     const all = await oneContainer.getAll();
+     res.send(`${all}`);
 })
-app.get("/productosRandom",(req,res)=>{
+app.get("/productosRandom",async (req,res)=>{
      // res.send('Estas en productos Random');
      console.log ('--->'+ oneContainer.randomProduct());
-     res.send(`${oneContainer.randomProduct()}`);
+     res.send(await oneContainer.randomProduct());
 })
 
 async function agregaProductos () {
