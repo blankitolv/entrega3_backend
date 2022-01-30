@@ -1,0 +1,50 @@
+[
+  {
+    "title": "sprite",
+    "price": 200,
+    "thumbnail": "www.placedog.net/200/200",
+    "id": 0
+  },
+  {
+    "title": "coca",
+    "price": 200,
+    "thumbnail": "www.placedog.net/200/200",
+    "id": 1
+  },
+  {
+    "title": "fanta",
+    "price": 200,
+    "thumbnail": "www.placedog.net/200/200",
+    "id": 2
+  },
+  {
+    "title": "beldent menta",
+    "price": 60,
+    "thumbnail": "www.placedog.net/200/200",
+    "id": 3
+  },
+  {
+    "title": "beldent fruta",
+    "price": 60,
+    "thumbnail": "www.placedog.net/200/200",
+    "id": 4
+  },
+  {
+    "title": "yerba",
+    "price": 300,
+    "thumbnail": "www.placedog.net/200/200",
+    "id": 5
+  },
+  {
+    "title": "te",
+    "price": 130,
+    "thumbnail": "www.placedog.net/200/200",
+    "id": 6
+  },
+  {
+    "title": "agua mineral",
+    "price": 130,
+    "thumbnail": "www.placedog.net/200/200",
+    "id": 7
+  }
+]
