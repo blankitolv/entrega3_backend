@@ -47,13 +47,13 @@ class Contenedor{
                     toReturn=JSON.stringify(unProducto); //string
                     console.log ('toReturn tipo: '+typeof(toReturn)) //tipo: string
                     toReturn=JSON.stringify(unProducto);
-                    return toReturn;
+                    console.log(toReturn); // {"title":"beldent fruta","price":60,"thumbnail":"www.placedog.net/200/200","id":4}
                })
                .catch(err => {
                     console.log ('           ups...             ')
                     console.log ('mY ErRoR: '+err)
                })
-          
+          return toReturn;
      }
 }
 const name='\\productos.txt'
@@ -67,6 +67,7 @@ app.get("/productos",(req,res)=>{
 })
 app.get("/productosRandom",(req,res)=>{
      // res.send('Estas en productos Random');
+     console.log ('--->'+ oneContainer.randomProduct());
      res.send(`${oneContainer.randomProduct()}`);
 })
 
