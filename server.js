@@ -64,13 +64,10 @@ const oneContainer= new Contenedor(user_path_file)
 // app.get((ruta),(callback))
 app.get("/productos",(req,res)=>{
      res.send('Estás en productos');
-     res.end();
 })
 app.get("/productosRandom",(req,res)=>{
      // res.send('Estas en productos Random');
      res.send(`${oneContainer.randomProduct()}`);
-     res.end();
-
 })
 
 async function agregaProductos () {
